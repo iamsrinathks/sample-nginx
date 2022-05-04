@@ -12,7 +12,7 @@ pipeline {
 
         stage('Docker build') {
             steps {
-                  sh 'docker build .'
+                  sh 'newgrp docker; docker build .'
             }
         }
 
