@@ -12,7 +12,7 @@ pipeline {
 
         stage('Docker build') {
             steps {
-                  sh 'whoami; newgrp docker; docker build .'
+                  sh 'docker build . -t iamsrinathks/sample-nginx:$BUILD_NUMBER'
             }
         }
 
