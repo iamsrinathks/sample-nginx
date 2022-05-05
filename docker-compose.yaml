@@ -5,4 +5,4 @@ services:
     ports:
       - "80:80"
   webapp:
-    image: "iamsrinathks/sample-nginx:${TAG}"
+    image: "iamsrinathks/sample-nginx:${DEPLOY_IMAGE_TAG}"
