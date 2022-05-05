@@ -31,7 +31,8 @@ pipeline {
         stage('Deploy to dev') {
             steps {
             sh """
-               docker-compose up -e TAG=$BUILD_NUMBER -d
+                export DEPLOY_IMAGE_TAG=$BUILD_NUMBER
+               docker-compose up -d
             """
 
             }
