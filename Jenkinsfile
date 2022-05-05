@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy to dev') {
             steps {
             sh """
-               sh "docker-compose up -d"
+               docker-compose up -d
             """
 
             }
