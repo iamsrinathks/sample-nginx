@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'infra'
+        label 'cicd'
     }
 
     stages {
@@ -25,16 +25,14 @@ pipeline {
                 docker login -u ${USERNAME} -p ${PASSWORD}
                 docker push iamsrinathks/sample-nginx:$BUILD_NUMBER
                 """
-           }
-
-
-
-
-            }
-        }
+             }
+          }
+      }
         stage('Deploy to dev') {
             steps {
-            sh 'echo "placeholder"'
+            sh """
+               sh "docker-compose up -d"
+            """
 
             }
         }
