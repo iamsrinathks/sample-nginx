@@ -1,2 +1,2 @@
 # sample-nginx
-a sample nginx container to display container name
+Sample nginx container to display container name

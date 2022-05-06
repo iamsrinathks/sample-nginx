@@ -3,10 +3,15 @@ pipeline {
         label 'cicd'
     }
 
+    options {
+      timestamps()
+      timeout(time: 30, unit: 'MINUTES')
+    }
+
     stages {
         stage('Prepare') {
             steps{
-                sh 'echo "placeholder"'
+                sh 'echo "Preparing the environment"'
             }
         }
 
@@ -19,21 +24,20 @@ pipeline {
 
         stage('Docker push') {
             steps {
-
             withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh """
-                docker login -u ${USERNAME} -p ${PASSWORD}
-                docker push iamsrinathks/sample-nginx:$BUILD_NUMBER
-                """
+                sh '''
+                    docker login -u ${USERNAME} -p ${PASSWORD}
+                    docker push iamsrinathks/sample-nginx:$BUILD_NUMBER
+                '''
              }
           }
       }
         stage('Deploy to dev') {
             steps {
-            sh """
+            sh '''
                 export DEPLOY_IMAGE_TAG=$BUILD_NUMBER
-               docker-compose up -d
-            """
+                docker-compose up -d
+            '''
 
             }
         }
